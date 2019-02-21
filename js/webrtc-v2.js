@@ -355,7 +355,7 @@ const PHONE = window.PHONE = config => {
         let video   = myvideo || document.createElement('video');
         let canvas  = document.createElement('canvas');
         let context = canvas.getContext("2d");
-        let snap    = { width: 640, height: 480 };
+        let snap    = { width: 240, height: 180 };
 
         // Video Settings
         video.width     = snap.width;
@@ -388,6 +388,7 @@ const PHONE = window.PHONE = config => {
         let talk   = get_conversation(number);
         vid.setAttribute( 'autoplay',    'autoplay'    );
         vid.setAttribute( 'playsinline', 'playsinline' );
+		vid.className = 'someClassName';
         vid.srcObject = obj.streams[0];
         talk.video = vid;
         talk.connect(talk);
