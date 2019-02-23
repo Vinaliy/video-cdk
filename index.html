@@ -1,876 +1,154 @@
-<!doctype html>
-<html>
+<!-- Demo version: 2018.10.25 -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8">
-<title>Видео чат рулетка |Сайт знакомств онлайн | Знакомства в интернете </title>
-  <meta name="description" content="AppRTC: Room full">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="stylesheet" href="css/main.css">
-   <link rel="stylesheet" href="css/styles2.css">
-<!--  <link rel="stylesheet" href="css/html5.webcam.demo.css">-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="apple-touch-icon" href="img/icon.png" sizes="180x180">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/icon.png">
+  <meta charset="utf-8">
+  <title>One-to-One Video Chat using RTCMultiConnection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.js"></script>
+<script src="https://cdn.webrtc-experiment.com/FileBufferReader.js"></script>
 
-  <!-- Libs and Scripts -->
-<script src="js/webrtc-v2.js"></script>
+<!-- socket.io for signaling -->
+<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+<style>
+video {
+    object-fit: fill;
+}
+#video:first-child {
+	width: 400px;
+}
+video:nth-child(2) {
+	width: 100px;
+	position: absolute;
+    margin-left: -150px;
+    padding: 1em;
+}
+button, input, select {
+    font-family: Myriad, Arial, Verdana;
+    font-weight: normal;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 2px 4px;
+    text-decoration: none;
+    color: rgb(27, 26, 26);
+    display: inline-block;
+    box-shadow: rgb(255, 255, 255) 1px 1px 0px 0px inset;
+    text-shadow: none;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0.05, rgb(241, 241, 241)), to(rgb(230, 230, 230)));
+    font-size: 16px;
+    border: 1px solid red;
+    outline:none;
+}
+button:active, input:active, select:active, button:focus, input:focus, select:focus, input[type=text] {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(5%, rgb(221, 221, 221)), to(rgb(250, 250, 250)));
+    border: 1px solid rgb(142, 142, 142);
+}
+button[disabled], input[disabled], select[disabled] {
+    background: rgb(249, 249, 249);
+    border: 1px solid rgb(218, 207, 207);
+    color: rgb(197, 189, 189);
+}
 
-</head>
-
-<body>
-<!--------------------------------------- HEADER ________________------------->
-<div id="head">
-<!--------------------------------------- ВКЛАДКИ _------------------------>
-
-<div class="tab-content gradient" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"><!----ПЕРВАЯ ВКЛАДКА--->
-<!--------------------------------------- СЛАЙДЕР _------------------------>
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-
-  <!--------------------------------------- НАВИГАЦИЯ 1 ВКЛАДКИ ДЕСКТОП _КОНЕЦ------------------->
-
-  <!--------------------------------------- НАВИГАЦИЯ 1 ВКЛАДКИ _МОБИЛНОЕ--------------->
-<nav class="navbar navbar-expand-lg navbar-light" id="#">
-  <a class="navbar-brand" href="loveismeet.com">
-
-    <span class="logo_text" style=""><img src="img/logo1.png" alt=""/>Lovemeet</span>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="float:right;">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse  justify-content-end" id="navbarNavAltMarkup">
-    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-<li class="nav-item dropdown">
-    <a class="nav-link navbar-brand dropdown-toggle bg-transparent" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="img/Russia-flag.png" height="30" alt="Чат" title="Чат \ Сообщения"></a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#"><img src="img/Russia-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
-      <a class="dropdown-item" href="#"><img src="img/Ukraine-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
-      <a class="dropdown-item" href="#"><img src="img/Turkey-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
-  </li>
-<li class="nav-item">
-   <a class="nav-link navbar-brand bg-transparent" id="pills-profile-tab" data-toggle="modal" data-placement="top" title="зарегистрироваться \ войти"  href="#registerleModal" aria-controls="pills-profile" aria-selected="false"><!--<img src="img/Users-Checked-User-icon.png" height="30" alt="Чат" title="Чат \ Сообщения">--> Войти</a></li>
-</ul>
-  </div>
-</nav>
-   <!--------- НАВИГАЦИЯ 1 ВКЛАДКИ _МОБИЛНОЕ-----КОНЕЦ---------->
-
- <!--------------------ПЕРВЫЙ СЛАЙД ------------------------>
-  <div class="carousel-inner shadow">
-  <!--------------------ПЕРВЫЙ СЛАЙД МОБ,---------------->
-  <div class="slaydr_mob">
-    <img src="img/slayder2.png" class="img-fluid" alt=""/> </div>
-  <!--------------------ПЕРВЫЙ СЛАЙД МОБ,-КОНЕЦ------->
-    <div class="carousel-item active" data-interval="5000" style="margin-top:-4em;">
-
-        <img src="img/slayder1.png" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block carousel-box1">
-          <span class="logo_text1 text-center" style=" margin-left:0;">Lovemeet <span style="font-weight:400;">- Видеочат</span></span>
-         <h4 style="color:#ff316a;">с девушками онлайн</h4>
-    <a href="#pills-profile" id="pills-profile-tab" data-toggle="pill" class="btn btn-danger btn-lg button_videochat" role="button" aria-pressed="true" style="margin-top:3em;">ПОПРОБУЙ БЕСПЛАТНО</a>
-    <p style=" color:#373737; margin-top: 1em;">БЕЗ РИГИСТРАЦИИ</p>
-  </div>
-      </div>
-    <div class="carousel-item" data-interval="3000" style="margin-top:-4em;">
-
-      <img src="img/slayder_2.png" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block carousel-box2">
-          <span class="logo_text1 text-center" style=" margin-left:0;">Lovemeet <span style="font-weight:400;">- Видеочат</span></span>
-         <h4 style="color:#ff316a;">с девушками онлайн</h4>
-    <a href="#pills-profile" id="pills-profile-tab" data-toggle="pill" class="btn btn-danger btn-lg button_videochat" role="button" aria-pressed="true">ПОПРОБУЙ БЕСПЛАТНО</a>
-    <p style=" color:#373737; margin-top: 1em;">БЕЗ РИГИСТРАЦИИ</p>
-  </div>
-    </div>
-    <!--<div class="carousel-item" data-interval="2000">
-      <img src="img/slayder1.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-    <h5>.123</h5>
-    <p>789</p>
-  </div>
-    </div>-->
-  </div>
- <!--------------------ПЕРВЫЙ СЛАЙД -----КОНЕЦ----------->
-</div>
-</div><!----ПЕРВАЯ ВКЛАДКА--КОНЕЦ---->
-
-<!----ВТОРАЯ ВКЛАДКА--->
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" style="margin-bottom:10em;">
-     <!--------------------------------------- НАВИГАЦИЯ 2 ВКЛАДКИ _------------------------>
-
-  <!--------------------------------------- НАВИГАЦИЯ 2 ВКЛАДКИ ДЕСКТОП _КОНЕЦ------------------->
-
-  <!--------------------------------------- НАВИГАЦИЯ 2 ВКЛАДКИ _МОБИЛНОЕ--------------->
-<nav class="navbar navbar-expand-lg navbar-light " id="#">
-  <a class="navbar-brand"  id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
-
-    <span class="logo_text" style=""><img src="img/logo1.png" alt=""/>Lovemeet</span>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="float:right;">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse  justify-content-end" id="navbarNavAltMarkup">
-    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-
-<li class="nav-item dropdown">
-    <a class="nav-link navbar-brand dropdown-toggle bg-transparent" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="img/Russia-flag.png" height="30" alt="Чат" title="Чат \ Сообщения"></a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#"><img src="img/Russia-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
-      <a class="dropdown-item" href="#"><img src="img/Ukraine-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
-      <a class="dropdown-item" href="#"><img src="img/Turkey-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
-  </li>
-<li class="nav-item">
-    <a class="nav-link navbar-brand bg-transparent" id="pills-profile-tab" data-toggle="modal" href="#registerleModal" aria-controls="pills-profile" aria-selected="false"><img src="img/devushki2.png" class="rounded mr-2" style="height:35px;" alt="..."></a>
-  </li>
-</ul>
-  </div>
-</nav>
-   <!--------- НАВИГАЦИЯ 2 ВКЛАДКИ _МОБИЛНОЕ-----КОНЕЦ---------->
-
-
-
-
-
-
- <div class="container-fluid">
- <h4 class="text-center" style="">Вы зашли как: <span class="badge" style="background-color: #ff316a; color:#fff;" id="number"></span><a class="nav-link navbar-brand bg-transparent" id="editing-modal" data-toggle="modal" href="#editing_naemleModal" role="modal" aria-controls="editing-tab"><img src="img/editing.png" height="30" alt="Редактировать"></a></h4>
- <div class="row" style=" padding-top:1em;">
-   <div class="col-sm-8">
-
-    <div style="width:100%;">
-    
   
-<!--<video class="embed-responsive" height="100%" id="webcamfeed" autoplay controls style="#"></video>
-<div class="text-center" style="position: relative; margin-top: -5em; margin-bottom:5em;">
-    <input type="button" class="btn btn-success btn-lg active" id="capturewebcam" value="Начать поиск"/>
-  </div>
-</div>-->
-
-
-<!-- your number -->
-
-
-<!-- camera -->
-<!--<div><button id="startcam">Start Camera</button></div>-->
-<div><button id="stopcam">Stop Camera</button></div>
-
-<!-- dialer/calling -->
-<!--<div><button id="startcall">Start Call</button><input id="dial"></div>-->
-<div><button id="stopcall">Stop Call</button></div>
- <div class="d-flex align-items-center align-content-start flex-wrap" style=" margin-bottom: -6em;">
-  <button type="button" class="btn float-left" id="startcam"><img src="img/on_camera.png" class="ml-3" style="height:80px; position: relative; z-index: 10;"></button>
-  <h5 class="ml-auto align-items-center p-2 bd-highlight" style="position:relative; z-index:100; color:#808182;">Осталось: <a href="#"><span class="badge badge-success"> 10:00 мин.</span></a> </h5>
-       </div>
-<!-- Video Feeds -->
-<div class="embed-responsive" id="video-out" style="width: 100%; height: 480px; background-color: #00000091;"></div>
-<style>video:first-child { display:block}
-video:nth-child(2) { width: 100px;}</style>
-<div class="text-center" style="position: relative; margin-top: -5em; margin-bottom:5em;">
-    <input type="button" class="btn btn-success btn-lg active" id="startcall" value="Начать"/><input id="dial">
-  </div>
-
-<script>(()=>{
-    'use strict';
-
-    // ~Warning~ You must get your own API Keys for non-demo purposes.
-    // ~Warning~ Get your PubNub API Keys: https://www.pubnub.com/get-started/
-    // The phone *number* can by any string value
-
-    let   session = null;
-    const number  = Math.ceil(Math.random()*10000);
-    const phone   = PHONE({
-        number        : number
-    ,   autocam       : false
-    ,   publish_key   : 'pub-c-561a7378-fa06-4c50-a331-5c0056d0163c'
-    ,   subscribe_key : 'sub-c-17b7db8a-3915-11e4-9868-02ee2ddab7fe'
-    });
-
-    // Debugging Output
-    phone.debug( info => console.info(info) );
-
-    // Show Number
-    phone.$('number').innerHTML = 'Number: ' + number;
-
-    // Start Camera
-    phone.bind(
-        'mousedown,touchstart'
-    ,   phone.$('startcam')
-    ,   event => phone.camera.start()
-    );
-
-    // Stop Camera
-    phone.bind(
-        'mousedown,touchstart'
-    ,   phone.$('stopcam')
-    ,   event => phone.camera.stop()
-    );
-
-    // Local Camera Display
-    phone.camera.ready( video => {
-        phone.$('video-out').appendChild(video);
-    });
-
-    // As soon as the phone is ready we can make calls
-    phone.ready(()=>{
-
-        // Start Call
-        phone.bind(
-            'mousedown,touchstart'
-        ,   phone.$('startcall')
-        ,   event => session = phone.dial(phone.$('dial').value)
-        );
-
-        // Stop Call
-        phone.bind(
-            'mousedown,touchstart'
-        ,   phone.$('stopcall')
-        ,   event => phone.hangup()
-        );
-
-    });
-
-    // When Call Comes In or is to be Connected
-    phone.receive(function(session){
-
-        // Display Your Friend's Live Video
-        session.connected(function(session){
-            phone.$('video-out').appendChild(session.video);
-        });
-
-    });
-
-})();</script>
-
-    </div></div>
+</style>
+</head>
+<body>
+<h1><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/RTCMultiConnection-v3.0">Audio+Video+TextChat+FileSharing</a></h1>
+<hr>
+<input type="text" id="room-id" value="vidim">
+<button id="open-room">Open Room</button>
+<button id="join-room">Join Room</button>
+<button id="open-or-join-room">Auto Open Or Join Room</button>
+<hr>
+<div id="chat-container">
+    <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
+    <button id="share-file" disabled>Share File</button>
+    <br>
+    <div id="file-container"></div>
+    <div class="chat-output"></div>
     
-    <div class="col">
-<div class="container-fluid flex-column"><ul class="nav nav-tabs list-unstyled" id="myTab_chat" role="tablist">
-<li class="nav-item dropdown">
- <a class="nav-link dropdown-toggle navbar-brand bg-transparent" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="img/filled-chat.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
-
- <div class="dropdown-menu">
-
-  <a class="dropdown-item" id="myChat-tab" data-toggle="tab" href="#myChat" role="tab" aria-controls="myChat" aria-selected="false"><img src="img/filled-chat.png" height="30"> Чат</a>
-<a class="dropdown-item" id="profile-tab" data-toggle="tab" href="#myMessages" role="tab" aria-controls="myMessages" aria-selected="false"><img src="img/1.png" height="30"> Сообщения</a>
-  </div>
-  </li>
-  <li class="nav-item">
- <a class="nav-link navbar-brand bg-transparent" id="profile-tab" data-toggle="tab" href="#myFriends" role="tab" aria-controls="myFriends-tab"><img src="img/user.png" height="50" alt="Друзья"></a>
-
-  </li>
-
-  <li class="nav-item">
-    <!--<a class="nav-link navbar-brand" id="pills-settings-tab" data-toggle="tab" href="#pills-settings" role="tab" aria-controls="profile" aria-selected="false"><img src="img/administrative.png" height="50" alt="Чат"></a>-->
-    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModalCenter">Стать премиум</button>
-  </li>
-
-</ul></div>
-
-<div class="tab-content overflow-auto align-items-stretch" id="myTabContent" style="height:500px;">
-
-  <div class="tab-pane fade show active chat_tab_style" id="myChat" role="tabpanel" aria-labelledby="myChat-tab">
-<ul class="list-unstyled">
-  <li class="media bg-light" style="padding:0.5em;">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">Маша</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-    </div>
-        <img src="img/devushki1.png" class="mr-3" style="height:54px;" alt="...">
-  </li>
-  <li class="media my-4 list-group-item-primary rounded-pill">
-        <img src="img/vi.png" class="mr-3" style="height:54px;" alt="...">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">Вы</h5>
-      Cras sit amet nibh libero, in gravida nulla.
-    </div>
-  </li>
-  <li class="media bg-light" style="padding:0.5em;">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">Наташа</h5>
-      Cras sit amet nibh libero, vestibulum in vulputate at, tempus viverra turpis.
-     </div>
-        <img src="img/devushki2.png" class="mr-3" style="height:54px;" alt="...">
-  </li>
-  <li class="media my-4 list-group-item-primary rounded-pill">
-        <img src="img/video-chat-clipart.png" class="mr-3" style="height:54px;" alt="...">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">Вы</h5>
-      Cras sit amet nibh libero, in gravida nulla.
-    </div>
-  </li>
-</ul>
-  </div>
-  <div class="tab-pane fade chat_tab_style" id="myMessages" role="tabpanel" aria-labelledby="myMessages-tab">
-
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="opacity:1; max-width:100%;">
-  <div class="toast-header gradient">
-    <img src="img/devushki2.png" class="rounded mr-2" style="height:54px;" alt="...">
-    <strong class="mr-auto">Анюта</strong>
-    <small class="text-muted">2 часа назад</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Привет!
-  </div>
 </div>
+<hr>
+ 
+<script>
+// ......................................................
+// .......................UI Code........................
+// ......................................................
+document.getElementById('open-room').onclick = function() {
+    this.disabled = true;
+    connection.open(document.getElementById('room-id').value);
+};
+document.getElementById('join-room').onclick = function() {
+    this.disabled = true;
+    connection.join(document.getElementById('room-id').value);
+};
+document.getElementById('open-or-join-room').onclick = function() {
+    this.disabled = true;
+    connection.openOrJoin(document.getElementById('room-id').value);
+};
+// ......................................................
+// ................FileSharing/TextChat Code.............
+// ......................................................
+document.getElementById('share-file').onclick = function() {
+    var fileSelector = new FileSelector();
+    fileSelector.selectSingleFile(function(file) {
+        connection.send(file);
+    });
+};
+document.getElementById('input-text-chat').onkeyup = function(e) {
+    if(e.keyCode != 13) return;
+    
+    // removing trailing/leading whitespace
+    this.value = this.value.replace(/^\s+|\s+$/g, '');
+    if (!this.value.length) return;
+    
+    connection.send(this.value);
+    appendDIV(this.value);
+    this.value =  '';
+};
+var chatContainer = document.querySelector('.chat-output');
+function appendDIV(event) {
+    var div = document.createElement('div');
+    div.innerHTML = event.data || event;
+    chatContainer.insertBefore(div, chatContainer.firstChild);
+    div.tabIndex = 0; div.focus();
+    
+    document.getElementById('input-text-chat').focus();
+}
+// ......................................................
+// ..................RTCMultiConnection Code.............
+// ......................................................
+var connection = new RTCMultiConnection();
+connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+connection.enableFileSharing = true; // by default, it is "false".
+connection.session = {
+    audio: true,
+    video: true,
+    data : true
+};
+video.className = 'someClassName';
+connection.sdpConstraints.mandatory = {
+    OfferToReceiveAudio: true,
+    OfferToReceiveVideo: true
+};
+connection.onstream = function(event) {
+    document.body.appendChild(event.mediaElement);
+};
+connection.onmessage = appendDIV;
+connection.filesContainer = document.getElementById('file-container');
+connection.onopen = function() {
+    document.getElementById('share-file').disabled      = false;
+    document.getElementById('input-text-chat').disabled = false;
+};
+</script>
 
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="opacity:1; max-width:100%;">
-  <div class="toast-header gradient">
-    <img src="img/devushki1.png" class="rounded mr-2" style="height:54px;" alt="...">
-    <strong class="mr-auto">Наташа</strong>
-    <small class="text-muted">2 секунды назад</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Как дела? Напиши мне.
-  </div>
-</div>
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="opacity:1; max-width:100%;">
-  <div class="toast-header gradient">
-    <img src="img/devushki2.png" class="rounded mr-2" style="height:54px;" alt="...">
-    <strong class="mr-auto">Анюта</strong>
-    <small class="text-muted">2 часа назад</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Привет!
-  </div>
-</div>
+  <footer>
+    <small id="send-message"></small>
+  </footer>
 
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="opacity:1; max-width:100%;">
-  <div class="toast-header gradient">
-    <img src="img/devushki1.png" class="rounded mr-2" style="height:54px;" alt="...">
-    <strong class="mr-auto">Наташа</strong>
-    <small class="text-muted">2 секунды назад</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Как дела? Напиши мне.
-  </div>
-</div>
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="opacity:1; max-width:100%;">
-  <div class="toast-header gradient">
-    <img src="img/devushki2.png" class="rounded mr-2" style="height:54px;" alt="...">
-    <strong class="mr-auto">Анюта</strong>
-    <small class="text-muted">2 часа назад</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Привет!
-  </div>
-</div>
-
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="opacity:1; max-width:100%;">
-  <div class="toast-header gradient">
-    <img src="img/devushki1.png" class="rounded mr-2" style="height:54px;" alt="...">
-    <strong class="mr-auto">Наташа</strong>
-    <small class="text-muted">2 секунды назад</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Как дела? Напиши мне.
-  </div>
-</div>
-  </div>
-  <div class="tab-pane fade" id="myFriends" role="tabpanel" aria-labelledby="myFriends-tab">
-<ul class="list-unstyled">
-
-  <li class="media my-4 list-group-item-primary rounded-pill">
-
-        <img src="img/devushki2.png" class="mr-3" style="height:54px;" alt="...">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">Маша</h5><!-- Button trigger modal -->
-      Одесса. 18 лет
-    </div>
-    <!-- Button trigger modal -->
-   <a class="#" href="#" role="button" data-toggle="modal" data-target="#frends_onlaynleModalCenter"><img src="img/14.png" class="ml-3" style="height:54px;" alt="Начать чат"></a>
-  </li>
-
-  <li class="media my-4 list-group-item-primary rounded-pill">
-        <img src="img/devushki1.png" class="mr-3" style="height:54px;" alt="...">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">Саша</h5>
-      Одесса. 18 лет
-    </div>
-    <img src="img/14_dis.png" class="ml-3" style="height:54px;" alt="...">
-  </li>
-  <li class="media my-4 list-group-item-primary rounded-pill">
-        <img src="img/devushki2.png" class="mr-3" style="height:54px;" alt="...">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">Маша</h5>
-      Одесса. 18 лет
-    </div>
-    <img src="img/14.png" class="ml-3" style="height:54px;" alt="...">
-  </li>
-
-  <li class="media my-4 list-group-item-primary rounded-pill">
-        <img src="img/devushki1.png" class="mr-3" style="height:54px;" alt="...">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">Саша</h5>
-      Одесса. 18 лет
-    </div>
-    <img src="img/14_dis.png" class="ml-3" style="height:54px;" alt="...">
-  </li>
-</ul>
-
-  </div>
-
-</div>
-
-    </div>
-
-  </div>
-</div>
-<!--
-  -->
-
-
-  </div>
-<!----ВТОРАЯ ВКЛАДКА-КОНЕЦ-->
-
-  <!----ТРЕТЬЯ ВКЛАДКА--->
- <div class="tab-pane fade show" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab" style="">
-
-<nav class="navbar navbar-expand-lg navbar-light gradient" id="#">
-  <a class="navbar-brand" href="#">
-
-    <span class="logo_text" style=""><img src="img/logo1.png" height="80" alt=""/>Lovemeet</span>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="float:right;">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-   <li class="nav-item">
-    <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" style="color:#000;">Главная</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Видео чат</a>
-  </li>
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">RU</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">En</a>
-      <a class="dropdown-item" href="#">It</a>
-      <a class="dropdown-item" href="#">Rom</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Ua</a>
-    </div>
-  </li>
-
-</ul>
-  </div>
-</nav>
-
-   <div class="container-fluid">
-  <h1 class="text-center font-weight-normal">Личный кабинет</h1>
-  <div class="row">
-  <div class="col-3">
-    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-    </div>
-  </div>
-  <div class="col-9">
-    <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
-      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
-    </div>
-  </div>
-</div>
-</div>
- </div>
-
-</div><!--------------------------------------- ВКЛАДКИ _----КОНЕЦ------------>
-
-</header>
-
-<div class="section_1" style="">
-<div class="float-sm-left box">
-<img src="img/avat1.png" class="img-fluid" alt=""/> </div>
-<div class="float-sm-left box">
-<h1 class="font-weight-normal section-title logo_color">Что такое <span class="logo_color">Lovemeet</span> ?</h1>
-<p class="text-justify" style="font-size:1.2em;"> Добро пожаловать в <span class="logo_color">Lovemeet</span> - видео знакомства нового поколения. Это инновационный онлайн видеочат, который позволит тебе мгновенно знакомиться с тысячами новых девушек в режиме реального времени в веселой и безопасной обстановке. Наша система сама подберет для тебя собеседницу в один клик. Убедись в этом лично! Просто нажми кнопку <span class="logo_color">«Попробуй бесплатно»</span>, и уже через несколько секунд ты попадешь в видеочат с девушками, которых ты никогда не встречал прежде. Попробуй бесплатный видео чат прямо сейчас!</p>
-</div>
-</div>
-
-<div style="margin-bottom: 1em; clear: both;">
-<div class="float-sm-left box" style="padding-top: 3em;">
-<h1 class="font-weight-normal section-title logo_color">Знакомства с девушками</h1>
-<p class="text-justify" style="font-size:1.2em;">Ищешь онлайн видео знакомства с девушками, но на сайтах встречаются только мужчины? <span class="logo_color">Lovemeet</span> - это уникальные видеочат знакомства, где девушки знакомятся первыми! Здесь тебя ждут только реальные и проверенные девушки с хорошим настроением, готовые к общению в любое время суток! Выбирай сам, общайся только с теми, кто тебе нравится, сохраняй контакты для дальнейшего общения, совершай видеозвонки и наслаждайся всеми невероятными опциями <span class="logo_color">Lovemeet</span>! За час в нашем онлайн видеочате ты сможешь познакомиться с более чем 60 девушками! <span class="logo_color">Попробуй видео знакомства</span> с девушками прямо сейчас!</p>
-</div>
-<div class="float-sm-left box">
-<img src="img/avat2.png" class="img-fluid" alt=""/> </div></div>
-
-<div class="shadow gradient box22" style=" width: 100%; display: inline-block; margin-top: 5em; padding-top:3em;">
-<h1 class="text-center font-weight-normal section-title-centr logo_color">Как это работает?</h1>
-<p class="font-weight-lighter text-center" style="">Пользоваться <span class="logo_color">Lovemeet</span>  очень просто - включи веб-камеру, и к тебе сразу же подключится случайная девушка. Если ты недоволен выбором системы видео чата, просто нажми кнопку<span class="font-weight-bolder"> <span class="logo_color">«Следующая»</span>.</span></p>
-<img src="img/avat3.png" class="center-img img-fluid" alt=""/>
-<div  class="rounded-pill" style="background-color:#f5cee0; padding-top: 0.5em; padding-bottom: 0.1em; margin-left: auto; margin-right: auto; width: 22em;">
-<h4 class="text-center"> <span class="badge badge-success" style=" background-color: #ff316a;">2</span> <span class="badge badge-success" style=" background-color: #ff316a;">5</span> <span class="badge badge-success" style=" background-color: #ff316a;">1</span> ДЕВУШЕК ОНЛАЙН</h4>
- </div>
-
-    <div class="text-center" style="margin-top:0.5em;"><a href="#pills-profile" id="pills-profile-tab" data-toggle="pill" class="btn btn-danger btn-lg" role="button" aria-pressed="true" style="width:17em;">ПОПРОБУЙ БЕСПЛАТНО</a>
-    <p class="text-center">БЕЗ РИГИСТРАЦИИ</p>
-    </div>
-</div>
-<div class="box22" style="width: 100%; display: inline-block; padding-top:3em;">
-<h1 class="text-center font-weight-normal section-title-centr logo_color">Что особенного?</h1>
-<p class="font-weight-lighter text-center" style="">Забудь все, что ты знал об онлайн знакомствах. <span class="logo_color"> Lovemeet</span> - это принципиально новый формат. Никаких регистраций, заполнения профилей, личных данных и фейковых фотографий. Попробуй видео знакомства будущего прямо сейчас!</p>
- <div class="d-flex justify-content-around bd-highlight" style="margin-top:5em;">
- <div class="d-flex justify-content-around" style="width:300px;">
- <h5 class="text-center logo_color">АНОНИМНО И БЕЗОПАСНО</h5>
-</div>
- <div class="d-flex justify-content-around" style="width:300px;">
- <h5 class="text-center logo_color">СВЕРХ-БЫСТРО</h5>
- </div>
- <div class="d-flex justify-content-around" style="width:300px;">
- <h5 class="text-center logo_color">ВЫСОКОЕ КАЧЕСТВО</h5>
- </div>
- </div>
-  <div class="d-flex bd-highlight">
- <div class="justify-content-around">
- <img src="img/videochat-1.png" class="rounded mx-auto d-block img-fluid" alt=""/> </div>
- <div class="justify-content-around">
- <img src="img/videochat-2.png" class="rounded mx-auto d-block img-fluid" alt=""/>
- </div>
- <div class="justify-content-around">
- <img src="img/videochat-3.png" class="rounded mx-auto d-block img-fluid" alt=""/>
- </div>
- </div>
- <div class="d-flex justify-content-around bd-highlight">
- <div class="d-flex justify-content-around" style="width:300px;">
- <p class="font-weight-lighter text-center" style="padding-inline-end: 1em;
- padding-inline-start: 1em; ">Мы не просим предоставлять личную информацию.</p> </div>
- <div class="d-flex justify-content-around" style="width:300px;">
- <p class="font-weight-lighter text-center" style="padding-inline-end: 1em;
- padding-inline-start: 1em;">Тебе не придется ждать, соединение происходит моментально.</p>
- </div>
- <div class="d-flex justify-content-around" style="width:300px;">
- <p class="font-weight-lighter text-center" style="padding-inline-end: 1em;
- padding-inline-start: 1em;">Мы используем последние технологии в области передачи видеопотока.</p>
- </div>
- </div>
-</div>
-<div class="shadow  gradient box22" style="background-color: #a4c5d9; width: 100%; display: inline-block; margin-top: 5em; padding-top:3em;">
-<h1 class="text-center font-weight-normal section-title-centr logo_color">Попробуй бесплатно!</h1>
-<p class="font-weight-lighter text-center" style="">Осторожно, <span class="font-weight-bolder logo_color"> Lovemeet</span> затягивает, стоит только начать! Это уникальная возможность познакомиться и провести незабываемые часы с новыми подругами! Получи бесплатный пробный аккаунт и начни знакомиться с девушками прямо сейчас!</p>
-
-
-    <div class="text-center" style="margin-top:0.5em;"><a href="#pills-profile" id="pills-profile-tab" data-toggle="pill" class="btn btn-danger btn-lg" role="button" aria-pressed="true" style="width:17em;">ПОПРОБУЙ БЕСПЛАТНО</a>
-    <p class="text-center">БЕЗ РИГИСТРАЦИИ</p>
-<img src="img/videochat-08.png" class="img-fluid" alt=""/> </div>
-</div>
-<div class="shadow" style="width: 100%; display: inline-block; padding-top:3em;">
-<div class="d-flex justify-content-around bd-highlight">
- <div class="d-flex justify-content-around" style="width:300px;">
- <p class="font-weight-lighter text-center" style="padding-inline-end: 1em;
- padding-inline-start: 1em; font-size:0.8em;">Пользовательское соглашение</p> </div>
- <div class="d-flex justify-content-around" style="width:300px;">
- <p class="font-weight-lighter text-center" style="padding-inline-end: 1em;
- padding-inline-start: 1em; font-size:0.8em;">Политика конфиденциальности</p>
- </div>
- <div class="d-flex justify-content-around" style="width:300px;">
- <p class="font-weight-lighter text-center" style="padding-inline-end: 1em;
- padding-inline-start: 1em; font-size:0.8em;">Соответствие Закону США 18 U.S.C. Section 2257</p>
- </div>
- </div>
-</div>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <a class="navbar-brand" href="#"><span class="logo_text" style=" margin-left:1em;"><img src="img/logo1.png" height="60" alt=""/>Lovemeet</span></font></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mx-auto">
-     <li class="nav-item">
-        <a class="nav-link disabled" href="#"><font style="vertical-align: inherit;">Принимаем к оплате:
-</font></a></li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/payment_visa.png);vertical-align: inherit;">Visa</font>
-        <img src="img/payment_visa.png" height="20" alt=""/></a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/payment_visa.png);vertical-align: inherit;">Visa</font>
-        <img src="img/payment_master.png" height="20" alt=""/></a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/payment_visa.png);vertical-align: inherit;">Visa</font>
-        <img src="img/payment_web.png" height="20" alt=""/></a>
-      </li>
-
-
-    </ul>
-  </div>
-</nav>
-
-<!-- Modal РЕДАКТИРОВАНИЕ ИМЕНИ-->
-<div class="modal fade" id="editing_naemleModal" tabindex="-1" role="dialog" aria-labelledby="editingleModalCenter-Title" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle"><img src="img/editing.png" class="mr-3" style="height:54px;" alt="...">РЕДАКТИРОВАНИЕ ИМЕНИ</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <input class="form-control form-control-lg" type="text" placeholder="гость345">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-
-    <input type="button" class="btn btn-success"  data-dismiss="modal" id="capturewebcam" value="OK"/>
-
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal Контакты-Друзья-Вызов девушки он-лайн-->
-<div class="modal fade" id="frends_onlaynleModalCenter" tabindex="-1" role="dialog" aria-labelledby="frends_onlaynleModalCenter-Title" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle"><img src="img/devushki1.png" class="mr-3" style="height:54px;" alt="...">Маша |на связи |</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <h6> 18+ </h6>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-
-    <input type="button" class="btn btn-success btn-lg active"  data-dismiss="modal" id="capturewebcam" value="Начать ВидеоЧат"/>
-
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -Стать премиум------>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:1000px;">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color:#fbbe65;">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Купить премиум</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body gradient">
-        <div class="card-deck mb-3 text-center">
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header" style="background-color:#ff316a;">
-        <h4 class="my-0 font-weight-normal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3 дня</font></font></h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 1.99 </font></font><small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/ день</font></font></small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">10 пользователей включены</font></font></li>
-          <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2 ГБ памяти</font></font></li>
-          <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Доступ в справочный центр</font></font></li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-success" data-toggle="modal" data-target="#premiumModalCenter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Купить </font></font></button>
-      </div>
-    </div>
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header" style="background-color:#ff316a;">
-        <h4 class="my-0 font-weight-normal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1 месяц</font></font></h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 9.99  </font></font><small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/ месяц</font></font></small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">20 пользователей включены</font></font></li>
-          <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">10 ГБ памяти</font></font></li>
-          <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Доступ в справочный центр</font></font></li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-success" data-toggle="modal" data-target="#premiumModalCenter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Купить </font></font></button>
-      </div>
-    </div>
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header" style="background-color:#ff316a;">
-        <h4 class="my-0 font-weight-normal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">12 месяцев</font></font></h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 4.99 </font></font><small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/ год</font></font></small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">30 пользователей включены</font></font></li>
-          <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">15 ГБ памяти</font></font></li>
-          <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Доступ в справочный центр</font></font></li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-success" data-toggle="modal" data-target="#premiumModalCenter"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Купить </font></font></button>
-
-      </div>
-    </div>
-  </div>
-
-      </div>
-      <div class="#">
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <a class="navbar-brand" href="#"><span class="logo_text" style=" margin-left:1em;"><img src="img/logo1.png" style="height:60px;" alt=""/>Lovemeet</span></font></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mx-auto">
-     <li class="nav-item">
-        <a class="nav-link disabled" href="#"><font style="vertical-align: inherit;">Принимаем к оплате:
-</font></a></li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/payment_visa.png);vertical-align: inherit;">Visa</font>
-        <img src="img/payment_visa.png" height="20" alt=""/></a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/payment_visa.png);vertical-align: inherit;">Visa</font>
-        <img src="img/payment_master.png" height="20" alt=""/></a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/payment_visa.png);vertical-align: inherit;">Visa</font>
-        <img src="img/payment_web.png" height="20" alt=""/></a>
-      </li>
-
-
-    </ul>
-  </div>
-</nav>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal ОПЛАТА-->
-<div class="modal fade" id="premiumModalCenter" tabindex="-1" role="dialog" aria-labelledby="premiumModalCenterModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content gradient">
-      <div class="modal-header gradient">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Выберите карту</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <input class="form-control" type="text" placeholder="Карта №..." readonly>
-      </div>
-      <div class="modal-footer">
-
-        <button type="button" class="btn btn-secondary">Подтвердить</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal ВОЙТИ \ РЕГИСТРАЦИЯ-->
-<!--<div class="modal fade" id="registerleModal" tabindex="-1" role="dialog" aria-labelledby="registerleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-warning">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Авторизация:</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <ul class="nav nav-tabs" id="myTab_register" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#to_come_in_tab" role="tab" aria-controls="profile" aria-selected="false">Войти</a>
-  </li>
-  <li class="nav-item">
- <a class="nav-link active" id="home-tab" data-toggle="tab" href="#register_tab" role="tab" aria-controls="home" aria-selected="true">Зарегистрироваться</a>
-
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent_register">
-  <div class="tab-pane fade show active" id="register_tab" role="tabpanel" aria-labelledby="home-tab">
-  <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email </label>
-    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="введите ваш Email">
-
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Придумай пороль (мин 8 знаков)">
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Запомнить</label>
-  </div>
-
-    <a href="#pills-profile" id="pills-profile-tab" data-toggle="pill" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true" style="margin-top:3em;">Зарегистрироваться</a>
-</form>
-  </div>
-  <div class="tab-pane fade" id="to_come_in_tab" role="tabpanel" aria-labelledby="profile-tab">
-  <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email </label>
-    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="введите ваш Email">
-
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Ваш пороль ">
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Запомнить</label>
-  </div>
-  <a href="#pills-profile" id="pills-profile-tab" data-toggle="pill" class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true" style="margin-top:3em;">Войти</a>
-</form>
-  </div>
-
-</div>
-      </div>
-      <div class=" justify-content-center">
-        <div><p class="text-center">или войдите с помощью</p></div>
-        <ul class="nav justify-content-center">
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-        <img src="img/google.png" height="40" alt=""/></a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/google.png);vertical-align: inherit;">Visa</font>
-        <img src="img/facebook.png" height="40" alt=""/></a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/google.png);vertical-align: inherit;">Visa</font>
-        <img src="img/mailru.png" height="40" alt=""/></a>
-      </li>
-      <!--<li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/google.png);vertical-align: inherit;">Visa</font>
-        <img src="img/v-contact.png" height="40" alt=""/></a>
-      </li>-->
-
-
-
-    </ul>
-
-      </div>
-    </div>
-  </div>
-</div>-->
-<!--<script src="js/html5.webcam.demo.js"></script>-->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
+<!--  <script src="https://cdn.webrtc-experiment.com/common.js"></script>-->
 </body>
 </html>
