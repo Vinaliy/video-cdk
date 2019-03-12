@@ -19,19 +19,9 @@
   $('[data-toggle="tooltip"]').tooltip()
 })
   </script>
-<!--<style>
 
-video:first-child {
-	width: 400px;
-}
-video:nth-child(2) {
-	width: 100px;
-	position: absolute;
-    margin-left: -150px;
-    padding: 1em;
-}
-</style>-->
 </head>
+
 
 <body>
 <!--------------------------------------- HEADER ________________------------->
@@ -43,29 +33,7 @@ video:nth-child(2) {
 <!--------------------------------------- СЛАЙДЕР _------------------------>
   <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <!--------------------------------------- НАВИГАЦИЯ 1 ВКЛАДКИ _------------------------>
- <!--<div class="head_nav">
- <span class="logo_text" style=""><img src="img/logo1.png" alt=""/>Lovemeet</span>
-
- <ul class="nav nav-pills mb-3 nav-bar-home-screen" id="pills-tab" role="tablist">
-   <li class="nav-item">
-    <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" style="color:#000;">Главная</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Видео чат</a>
-  </li>
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">RU</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">En</a>
-      <a class="dropdown-item" href="#">It</a>
-      <a class="dropdown-item" href="#">Rom</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Ua</a>
-    </div>
-  </li>
-
-</ul>
-</div>-->
+ 
   <!--------------------------------------- НАВИГАЦИЯ 1 ВКЛАДКИ ДЕСКТОП _КОНЕЦ------------------->
 
   <!--------------------------------------- НАВИГАЦИЯ 1 ВКЛАДКИ _МОБИЛНОЕ--------------->
@@ -170,11 +138,16 @@ video:nth-child(2) {
 
 
  <div class="container-fluid">
- <h4 class="text-center" style="">Вы зашли как: <span class="badge" style="background-color: #ff316a; color:#fff;"> гость345 </span><a class="nav-link navbar-brand bg-transparent" id="editing-modal" data-toggle="modal" href="#editing_naemleModal" role="modal" aria-controls="editing-tab"><img src="img/editing.png" height="30" alt="Редактировать"></a></h4>
+ 
+ 
  <div class="row" style=" padding-top:1em;">
    <div class="col-sm-8">
 
     <div style="width:100%;">
+    <div class="tab-content" id="nav-tabContent">
+    <!---------------------------------------МУЖЧИНЫ------------>
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel">
+  <h4 class="text-center" style="">Вы зашли как: <span class="badge" style="background-color: #ff316a; color:#fff;"> гость345 </span><a class="nav-link navbar-brand bg-transparent" id="editing-modal" data-toggle="modal" href="#editing_naemleModal" role="modal" aria-controls="editing-tab"><img src="img/editing.png" height="30" alt="Редактировать"></a> Статус: <span class="badge badge-danger"> Премиум </span></h4>
     <div class="alert gradient alert-dismissible fade show container-fluid h-100 d-inline-block" role="alert" style=" position:absolute; z-index:20;margin-top: -2px;border: 0; width:97%;">
 
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -200,23 +173,24 @@ video:nth-child(2) {
 
     </div>
     <div class="card-footer" style="border:0;">
-      <button type="button" class="btn btn-outline-warning btn-lg btn-block"  data-toggle="tab" data-target="#pills-settings">Женщина</button>
+      <button type="button" class="btn btn-outline-warning btn-lg btn-block"  data-toggle="modal" data-target="#registerWumenleModal">Женщина</button>
+     
     </div>
   </div>
 
 </div>
 </div>
-   <div class="d-flex align-items-center align-content-start flex-wrap" style=" margin-bottom: -9em;">
-  <button type="button" class="btn float-left" id="open-room"><img src="img/on_camera.png" class="ml-3" style="height:80px; position: relative; z-index: 10;"></button>
+
+
+   <div class="d-flex align-items-center align-content-start flex-wrap" style=" margin-bottom: -3em;">
+  <button type="button" class="btn float-left" id="open-room"><img src="img/on_camera.png" class="ml-3" style="height:80px; position: relative; z-index: 10;display: none;"></button>
   <h5 class="align-items-center p-2 bd-highlight" style="position:relative; z-index:10; color:#808182;">Осталось: <a href="#"><span class="badge badge-success"> 10:00 мин.</span></a> </h5>
        </div>
 <section class="make-center">
    
-    <br><br>
-   <!-- <button id="btn-leave-room">Leave /or close the room</button>-->
 
-   <!-- <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>-->
 <div id="some_div_id"></div>
+
     <!--<div id="chat-container">
         <div id="file-container"></div>
         <div class="chat-output"></div>
@@ -226,54 +200,346 @@ video:nth-child(2) {
 /*<!--video {
     object-fit: fill;
 }-->*/
-#some_div_id{
-	overflow:hidden;
-	width: 100%;
-	display:block;
-	height: 480px; background-color: #00000091;
-	
-}
-video:first-child {
-	width: 100%;
-
-}
-video:nth-child(2) {
-	width: 30%;
-	position: absolute;
-    margin-left: -32%;
-	margin-top:1em;
-	border-style: solid;
-	border-color:#ede1e1;
-    border-radius: 0.5em;
-	border-width:thick;
-    box-shadow: 5px 18px 97px -30px #010101;
-}</style>
+</style>
   </section>
-<div class="text-center" style="position: relative; margin-top: -5em; margin-bottom:5em;">
-<!--
-    <input type="button" class="btn btn-success btn-lg active" id="join-room" value="Начать поиск"/>
-    <input type="text" id="room-id" value="vidim">-->
-   <!-- <button id="open-room">Open Room</button>-->
-    <!--<button id="join-room">Join</button>-->
-    <!--<button id="open-or-join-room">Auto</button>-->
-<div class="btn-group" role="group">
-  <button type="button" class="btn btn-success btn-lg active" id="join-room">Начать поиск</button>
+<div class="text-center" style="position: relative; margin-top: -10em; margin-bottom:2em;">
+<div class="btn-group-vertical">
+ <input type="text" class="text-center bg-transparent text-white" id="room-id" value="vidim" style="border:0;" disabled>
+<button type="button" class="btn btn-success btn-lg active" id="join-room" >Начать поиск</button>
+</div>
+
+<div class="btn-group btn-group-sm" role="group" style="width:100%; padding-top:1em;">
+
+<nav class="navbar navbar-light mx-auto" style=" background-color:rgba(0,0,0,0.09);">
+<a class="navbar-brand text-white" id="open-or-join-room" href="#" style="font-size: 1rem;">Авто</a>
+<a class="navbar-brand text-white" id="btn-leave-room" href="#" style="font-size: 1rem;">Добавить в друзья <span class="badge badge-warning">4</span></a>
+<a class="navbar-brand text-white" href="#" style="font-size: 1rem;">Закрыть сесию</a>
+ 
+<a class="navbar-brand text-white" data-toggle="collapse" href="#collapseHistori" style="font-size: 1rem;"> История</a>  
+ <button class="btn btn-outline-warning text-white" data-toggle="modal" data-target="#presentModalCenter" style="font-size: 1rem;">Подарок</button>
   
-  <input type="text" id="room-id" value="vidim">
-  <button class="btn btn-secondary" id="open-or-join-room">Auto</button>
-  <button class="btn btn-secondary" id="btn-leave-room">Закрыть</button>
+</nav>
 </div>
  
     
   </div>
- <!-- <div class="input-group">
-  <div class="custom-file">
-    <input type="text" class="custom-file-input" id="input-text-chat" aria-describedby="inputGroupFileAddon04" placeholder="Enter Text Chat">
-    <label class="custom-file-label" for="inputGroupFile04">Чат</label>
+
+  <div>
+  </div></div>
+ <!-- ЖЕНЬЩИНЫ---------------------------------------------->
+  <div class="tab-pane fade" id="nav-wumen" role="tabpanel" aria-labelledby="nav-wumen-tab">
+  <h4 class="text-center" style="">Ваше имя: <span class="" style=""> Изменить </span><a class="nav-link navbar-brand bg-transparent" id="editing-modal" data-toggle="modal" href="#editing_naemleModal" role="modal" aria-controls="editing-tab"><img src="img/editing.png" height="30" alt="Редактировать"></a> Юнитов: <span class="badge badge-danger"> 305 </span></h4>
+  
+  <div id="registracij-wumen" style="margin-bottom:1em;">
+   <nav class="nav nav-pills nav-fill" style="margin-bottom:1em;">
+  <div class="btn-group" role="group" aria-label="Basic example">
+  <a class="btn btn-secondary" href="#nav-wumen" id="nav-wumen-tab" data-toggle="tab"  role="tab" aria-controls="nav-finance">Личные данные</a>
+  <!--<a class="btn btn-secondary" href="#nav-finance" id="nav-finance-tab" data-toggle="tab" role="tab" aria-controls="nav-finance">Финансы <span class="badge  badge-info"  data-toggle="tooltip" title=" Юнитов на вашем счету"> 305</span></a>-->
+  <a class="btn btn-secondary" href="#navTOP" id="navTOP-tab" data-toggle="tab"  role="tab">ТОП</a>
+  <a class="btn btn-danger" href="#videoChat2" id="videoChat2-tab" data-toggle="tab"  role="tab">ВидеоЧат</a>
+  </div> 
+</nav>
+<h5 class="text-white float-right" style="margin-top: -2.5em;"><a class="navbar-brand text-white" href="#nav-finance" id="nav-finance-tab" data-toggle="tab" role="tab" title="Зарабатывайте unit общаясь в видеочате." aria-controls="nav-finance"><span> У вас: 305 unit.</span></a> <a class="navbar-brand" href="#tarif" id="tarif-tab" data-toggle="tab" role="tab" aria-controls="tarif" title="Расчет unit за первую и последующую минуту разговора."><span style="font-size: 1rem; color: #f5dce9;"> тариф </span><span class="badge badge-info" style=" color: #f5dce9;"> 3\9 </span></a></h5>
+<div class="card-deck">
+  <div class="card" style="background-color:hsla(0, 0%, 100%, 0.62);">
+    <img src="img/camera.png" class="card-img-top" alt="...">
+    <div class="card-img-overlay">
+    <h5 class="card-title">Ваше фото:</h5>
+    
+    
+  </div>
+    <div class="card-body" style="padding:0;">
+      
+      <nav class="navbar">
+  <a class="navbar-brand" href="#">
+    <img src="img/camera2.png" height="50" alt="">
+  </a>
+  <a class="navbar-brand" href="#">
+    <img src="img/add.png" height="50" alt="">
+  </a>
+</nav>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Ссылка на ваш профиль: loveismeet.com/id3584596</small>
+    </div>
+  </div>
+  <div class="card" style="background-color:hsla(0, 0%, 100%, 0.62);">
+
+    <div class="card-body">
+      <div class="input-group input-group-sm mb-3">
+      <select class="custom-select custom-select-sm mb-3" style="width:100%;">
+  <option selected>Ваш возрост:+18</option>
+  <option value="1">от 18 до 22 лет</option>
+  <option value="2">от 22 до 30 лет</option>
+  <option value="3">от 30 до 40 лет</option>
+</select>
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">@</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  placeholder="новй пароль">
+</div>
+
+<div class="input-group input-group-sm mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">@</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  placeholder="подтвердить пароль">
+</div>
+  
+  <div class="custom-control custom-radio">
+  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+  <label class="custom-control-label" for="customRadio1">Показывать весь контент</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+  <label class="custom-control-label" for="customRadio2">Не показывать сомнительный контент</label>
+</div>
+<div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-secondary  btn-sm btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Выберите страну для удоления из списка
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      <a class="dropdown-item" href="#">Украина</a>
+      <a class="dropdown-item" href="#">Россия</a>
+    </div>
+  </div>
+    </div>
+    <div class="card-footer">
+     <button type="button" class="btn btn-secondary btn-sm btn-block">Сохронить</button>
+    </div>
+  </div>
+ 
+</div>
+  </div>
   </div>
   
-</div>-->
-  <div>
+  <div class="tab-pane" id="nav-finance" role="tabpanel" aria-labelledby="nav-finance-tab"><!--финансы-->
+  <h4 class="text-center" style="">Ваше имя: <span class="" style=""> Изменить </span><a class="nav-link navbar-brand bg-transparent" id="editing-modal" data-toggle="modal" href="#editing_naemleModal" role="modal" aria-controls="editing-tab"><img src="img/editing.png" height="30" alt="Редактировать"></a> Юнитов: <span class="badge badge-danger"> 305 </span></h4>
+  <div id="registracij-wumen" style="margin-bottom:1em;">
+  <nav class="nav nav-pills nav-fill" style="margin-bottom:1em;">
+  <div class="btn-group" role="group" aria-label="Basic example">
+  <a class="btn btn-secondary" href="#nav-wumen" id="nav-wumen-tab" data-toggle="tab"  role="tab" aria-controls="nav-finance">Личные данные</a>
+  <!--<a class="btn btn-secondary" href="#nav-finance" id="nav-finance-tab" data-toggle="tab" role="tab" aria-controls="nav-finance">Финансы <span class="badge  badge-info"  data-toggle="tooltip" title=" Юнитов на вашем счету"> 305</span></a>-->
+  <a class="btn btn-secondary" href="#navTOP" id="navTOP-tab" data-toggle="tab"  role="tab">ТОП</a>
+  <a class="btn btn-danger" href="#videoChat2" id="videoChat2-tab" data-toggle="tab"  role="tab">ВидеоЧат</a>
+  </div> 
+</nav>
+<h5 class="text-white float-right" style="margin-top: -2.5em;"><a class="navbar-brand text-white" href="#nav-finance" id="nav-finance-tab" data-toggle="tab" role="tab" title="Зарабатывайте unit общаясь в видеочате." aria-controls="nav-finance"><span> У вас: 305 unit.</span></a> <a class="navbar-brand" href="#tarif" id="tarif-tab" data-toggle="tab" role="tab" aria-controls="tarif" title="Расчет unit за первую и последующую минуту разговора."><span style="font-size: 1rem; color: #f5dce9;"> тариф </span><span class="badge badge-info" style=" color: #f5dce9;"> 3\9 </span></a></h5>
+<div class="row">
+  <div class="col" style="background-color:#838686;">
+  <p class="text-center">Вывод средств на карту: </p>
+<div class="input-group mb-3" style=" margin-top: 1em;">
+
+  <div class="input-group-prepend">
+    <button type="button" class="btn btn-outline-warning">Вывести на:</button>
+    <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Карту <img src="img/payment_visa.png" height="30" alt="visa" title="visa"></a>
+      <a class="dropdown-item" href="#">Карту <img src="img/payment_master.png" height="30" alt="master" title="master"></a>
+      <div role="separator" class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Приват 24</a>
+    </div>
+  </div>
+  <input type="text" class="form-control"  placeholder="выберите карту" aria-label="выберите карту">
+</div>
+<div class="input-group mb-3" style="margin-top: 2em;">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon11"><img src="img/Users-Checked-User-icon.png" height="25" alt="master" title="master"></span>
+  </div>
+  <input type="text" class="form-control" placeholder="Ф.И.О. владельца" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+<div class="input-group mb-3" style="margin-top: 2em;">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon12">№ карты:</span>
+  </div>
+  <input type="text" class="form-control" placeholder="ХХХХ-ХХХХ-ХХХХ-ХХХХ" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+<div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 2em;">
+  Для вывода средств необходимо <strong>мин. 5000 unit.</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  
+</div>
+<div class="input-group mb-3" style="margin-top: 2em;">
+<button type="button" class="btn btn-danger btn-block">Вывести</button></div>
+  </div>
+  <div class="col">
+  <div class="alert alert-light" role="alert">
+  Зарабатывайте unit общаясь в видеочате.
+</div>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Сообщение от администрации!</strong> You should check in on some of those fields below.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<button type="button" class="btn btn-secondary text-center">Чат с администрацией</button>
+  </div>
+  
+  </div>
+  
+  </div>
+  </div>
+  <div class="tab-pane" id="navTOP" role="tabpanel" aria-labelledby="navTOP-tab"><!--  TOP-->
+  <div id="registracij-wumen" style="margin-bottom:1em;">
+ <nav class="nav nav-pills nav-fill" style="margin-bottom:1em;">
+  <div class="btn-group" role="group" aria-label="Basic example">
+  <a class="btn btn-secondary" href="#nav-wumen" id="nav-wumen-tab" data-toggle="tab"  role="tab" aria-controls="nav-finance">Личные данные</a>
+  <!--<a class="btn btn-secondary" href="#nav-finance" id="nav-finance-tab" data-toggle="tab" role="tab" aria-controls="nav-finance">Финансы <span class="badge  badge-info"  data-toggle="tooltip" title=" Юнитов на вашем счету"> 305</span></a>-->
+  <a class="btn btn-secondary" href="#navTOP" id="navTOP-tab" data-toggle="tab"  role="tab">ТОП</a>
+  <a class="btn btn-danger" href="#videoChat2" id="videoChat2-tab" data-toggle="tab"  role="tab">ВидеоЧат</a>
+  </div> 
+</nav>
+
+  </div>
+  
+  </div>
+  <div class="tab-pane" id="tarif" role="tabpanel" aria-labelledby="tarif-tab"><!-- Тарифы-->
+  <h4 class="text-center" style="">Ваше имя: <span class="" style=""> Изменить </span><a class="nav-link navbar-brand bg-transparent" id="editing-modal" data-toggle="modal" href="#editing_naemleModal" role="modal" aria-controls="editing-tab"><img src="img/editing.png" height="30" alt="Редактировать"></a> Юнитов: <span class="badge badge-danger"> 305 </span></h4>
+  <div id="registracij-wumen" style="margin-bottom:1em;">
+  <nav class="nav nav-pills nav-fill" style="margin-bottom:1em;">
+  <div class="btn-group" role="group" aria-label="Basic example">
+  <a class="btn btn-secondary" href="#nav-wumen" id="nav-wumen-tab" data-toggle="tab"  role="tab" aria-controls="nav-finance">Личные данные</a>
+  
+  <a class="btn btn-secondary" href="#navTOP" id="navTOP-tab" data-toggle="tab"  role="tab">ТОП</a>
+  <a class="btn btn-danger" href="#videoChat2" id="videoChat2-tab" data-toggle="tab"  role="tab">ВидеоЧат</a>
+  </div> 
+</nav>
+<h5 class="text-white float-right" style="margin-top: -2.5em;"><a class="navbar-brand text-white" href="#nav-finance" id="nav-finance-tab" data-toggle="tab" role="tab" title="Зарабатывайте unit общаясь в видеочате." aria-controls="nav-finance"><span> У вас: 305 unit.</span></a> <a class="navbar-brand" href="#tarif" id="tarif-tab" data-toggle="tab" role="tab" aria-controls="tarif" title="Расчет unit за первую и последующую минуту разговора."><span style="font-size: 1rem; color: #f5dce9;"> тариф </span><span class="badge badge-info" style=" color: #f5dce9;"> 3\9 </span></a></h5>
+  <div class="container">
+  <div class="row">
+    <div class="col-5" style="background-color:#9D95A6;">
+      <ul class="list-group list-group-flush">
+  <a href="#" class="list-group-item list-group-item-action nav-link  bg-transparent"><li class="list-group-item bg-transparent">
+  <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Тариф 7/14</h5>
+      <small>1188 мин.</small>
+      </div>
+    <p class="mb-1">Требуется минут: - 1188.</p>
+  </li></a>
+  <a href="#" class="list-group-item list-group-item-action nav-link  bg-transparent"><li class="list-group-item bg-transparent">
+  <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Тариф 5/12</h5>
+      <small>810 мин.</small>
+      </div>
+    <p class="mb-1">Требуется минут: - 810</p>
+  </li></a>
+  <a href="#" class="list-group-item list-group-item-action nav-link  bg-transparent"><li class="list-group-item bg-transparent">
+  <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Тариф 4/10</h5>
+      <small>369 мин.</small>
+      </div>
+    <p class="mb-1">Требуется минут: - 369</p>
+  </li></a>
+  <a href="#" class="list-group-item list-group-item-action nav-link  bg-transparent"><li class="list-group-item" style="background-color:#ab9876;">
+  <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Тариф 3/9</h5>
+      <small style="color:#fff;">Ваш тариф</small>
+      </div>
+   
+  </li></a>
+</ul>
+    </div>
+    <div class="col-4" style="color:#ccc; background-color:#8a7a82; padding:1em;">
+      <h5 class="mb-1">История общения:</h5>
+      <div class="row" style="padding:0.5em; margin-bottom:1em;">
+      <div class="col-4" style="background-color:#7a5d74;">
+      <small>Вс,</small>
+      </div>
+      <div class="col-8" style="background-color:#bca1a9; color:#000;">
+      <small>не работала</small>
+      </div>
+      <div class="col-4" style="background-color:#847581;">
+      <small>Пн,</small>
+      </div>
+      <div class="col-8" style="background-color:#c2b0b5; color:#000;">
+      <small>не работала</small>
+      </div>
+      <div class="col-4" style="background-color:#7a5d74;">
+      <small>Вт,</small>
+      </div>
+      <div class="col-8" style="background-color:#bca1a9; color:#000;">
+      <small>не работала</small>
+      </div>
+      <div class="col-4" style="background-color:#847581;">
+      <small>Ср,</small>
+      </div>
+      <div class="col-8" style="background-color:#c2b0b5; color:#000;">
+      <small>не работала</small>
+      </div>
+      <div class="col-4" style="background-color:#7a5d74;">
+      <small>Чт,</small>
+      </div>
+      <div class="col-8" style="background-color:#bca1a9; color:#000;">
+      <small>не работала</small>
+      </div>
+      <div class="col-4" style="background-color:#847581;">
+      <small>Пт,</small>
+      </div>
+      <div class="col-8" style="background-color:#c2b0b5; color:#000;">
+      <small>не работала</small>
+      </div>
+      <div class="col-4" style="background-color:#7a5d74;">
+      <small>Сб,</small>
+      </div>
+      <div class="col-8" style="background-color:#bca1a9; color:#000;">
+      <small>не работала</small>
+      </div>
+     </div>
+     <h5 class="mb-1">Итого: </h5>
+      <p>- 0 мин. за 7 дней <strong>  (?)</strong></p>
+      <p>- Выходных дней доступно: 0<strong>  (?)</strong></p>
+    </div>
+    
+    <div class="col-3" style="color:#ccc; background-color:#8a7a92; padding:1em;">
+      <h5 class="mb-1">Текущий тариф:-3/9</h5>
+      <p>- Первая минута: <strong> 3 unit</strong></p>
+      <p>- Вторая минута: <strong> 9 unit</strong></p>
+     
+    </div>
+    
+  </div></div>
+  </div>
+  </div>
+  
+  <div class="tab-pane" id="videoChat2" role="tabpanel" aria-labelledby="videoChat2-tab"><!-- ВидеоЧат-->
+  <h4 class="text-center" style="">Ваше имя: <span class="" style=""> Изменить </span><a class="nav-link navbar-brand bg-transparent" id="editing-modal" data-toggle="modal" href="#editing_naemleModal" role="modal" aria-controls="editing-tab"><img src="img/editing.png" height="30" alt="Редактировать"></a> Юнитов: <span class="badge badge-danger"> 305 </span></h4>
+  <div class="d-flex align-items-center align-content-start flex-wrap" style=" margin-bottom: -3em;">
+  <button type="button" class="btn float-left" id="open-room"><img src="img/on_camera.png" class="ml-3" style="height:80px; position: relative; z-index: 10;display: none;"></button>
+  <h5 class="align-items-center p-2 bd-highlight" style="position:relative; z-index:10; color:#808182;"><a  href="#nav-wumen" id="nav-wumen-tab" data-toggle="tab"  role="tab" aria-controls="nav-finance"><span class="badge badge-success"> Личные данные</span></a> </h5>
+       </div>
+  <div id="some_div_id" style="margin-bottom:1em;"></div>
+  
+  <div class="text-center" style="position: relative; margin-top: -10em; margin-bottom:2em;">
+<div class="btn-group-vertical">
+ <input type="text" class="text-center bg-transparent text-white" id="room-id" value="vidim" style="border:0;" disabled>
+<button type="button" class="btn btn-success btn-lg active" id="join-room" >Начать поиск</button>
+</div>
+
+<div class="btn-group btn-group-sm" role="group" style="width:100%; padding-top:1em;">
+
+<nav class="navbar navbar-light mx-auto" style=" background-color:rgba(0,0,0,0.09);">
+<a class="navbar-brand text-white" id="open-or-join-room" href="#" style="font-size: 1rem;">Авто</a>
+<a class="navbar-brand text-white" id="btn-leave-room" href="#" style="font-size: 1rem;">Добавить в друзья <span class="badge badge-warning">4</span></a>
+<a class="navbar-brand text-white" href="#" style="font-size: 1rem;">Закрыть сесию</a>
+ 
+<a class="navbar-brand text-white" data-toggle="collapse" href="#collapseHistori" style="font-size: 1rem;"> История</a>  
+ 
+  
+</nav>
+</div>
+ 
+    
+  </div>
+  
+  </div>
+  
+  </div>
+  
+  
   <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="input-text-chat">Чат</span>
@@ -283,10 +549,9 @@ video:nth-child(2) {
     <button class="btn btn-outline-secondary" type="button" id="share-file">File</button>
   </div>
 </div>
-  <!--<input type="text" id="input-text-chat" placeholder="Enter Text Chat">-->
-    <!--<button type="button" class="btn btn-secondary" id="share-file">File</button>-->
+
     
-    </div>
+    
     <script>
 // ......................................................
 // .......................UI Code........................
@@ -373,7 +638,44 @@ connection.onopen = function() {
 </script>
 
 </div>
-
+<div class="card-deck collapse" id="collapseHistori" style="padding-bottom:1em;">
+  <div class="card">
+    <img src="img/women-histori-1.png" class="card-img-top" alt="...">
+    <div class="card-img-overlay text-white" style="padding: 0.5rem;">
+    <p class="card-text"><span class="badge badge-pill badge-success">on</span> Маша</p>
+  </div>
+    <div class="card-footer">
+      <small class="text-muted">3 мин. назад <a class="nav-link navbar-brand bg-transparent float-right" href="#" style="margin-top: -0.3em;"> <img src="img/video-ico.png" height="20" alt="Видео чат"></a></small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="img/women-histori-2.png" class="card-img-top" alt="...">
+    <div class="card-img-overlay text-white" style="padding: 0.5rem;">
+    <p class="card-text"><span class="badge badge-pill badge-danger">of</span> Маша</p>
+  </div>
+    <div class="card-footer">
+      <small class="text-muted">1 мин. назад <a class="nav-link navbar-brand bg-transparent float-right" href="#" style="margin-top: -0.3em;"> <img src="img/video-ico.png" height="20" alt="Видео чат"></a></small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="img/women-histori-3.png" class="card-img-top" alt="...">
+    <div class="card-img-overlay text-white" style="padding: 0.5rem;">
+    <p class="card-text"><span class="badge badge-pill badge-success">on</span> Маша</p>
+  </div>
+    <div class="card-footer">
+      <small class="text-muted">Вчера <a class="nav-link navbar-brand bg-transparent float-right" href="#" style="margin-top: -0.3em;"> <img src="img/video-ico.png" height="20" alt="Видео чат"></a></small>
+    </div>
+  </div>
+  <div class="card">
+    <img src="img/women-histori-4.png" class="card-img-top" alt="...">
+    <div class="card-img-overlay text-white" style="padding: 0.5rem;">
+    <p class="card-text"><span class="badge badge-pill badge-danger">of</span> Маша</p>
+  </div>
+    <div class="card-footer">
+      <small class="text-muted">03.02.2019 <a class="nav-link navbar-brand bg-transparent float-right" href="#" style="margin-top: -0.3em;"> <img src="img/video-ico.png" height="20" alt="Видео чат"></a></small>
+    </div>
+  </div>
+</div>
 
     </div>
     <div class="col">
@@ -576,58 +878,48 @@ connection.onopen = function() {
   <!----ТРЕТЬЯ ВКЛАДКА--->
  <div class="tab-pane fade show" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab" style="">
 
-<nav class="navbar navbar-expand-lg navbar-light gradient" id="#">
-  <a class="navbar-brand" href="#">
+  <!--------------------------------------- НАВИГАЦИЯ 3 ВКЛАДКИ _МОБИЛНОЕ--------------->
+<nav class="navbar navbar-expand-lg navbar-light " id="#">
+  <a class="navbar-brand"  id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
 
-    <span class="logo_text" style=""><img src="img/logo1.png" height="80" alt=""/>Lovemeet</span>
+    <span class="logo_text" style=""><img src="img/logo1.png" alt=""/>Lovemeet</span>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="float:right;">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+  <div class="collapse navbar-collapse  justify-content-end" id="navbarNavAltMarkup">
     <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-   <li class="nav-item">
-    <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" style="color:#000;">Главная</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Видео чат</a>
-  </li>
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">RU</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">En</a>
-      <a class="dropdown-item" href="#">It</a>
-      <a class="dropdown-item" href="#">Rom</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Ua</a>
-    </div>
-  </li>
 
+<li class="nav-item dropdown">
+    <a class="nav-link navbar-brand dropdown-toggle bg-transparent" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="img/Russia-flag.png" height="30" alt="Чат" title="Чат \ Сообщения"></a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#"><img src="img/Russia-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
+      <a class="dropdown-item" href="#"><img src="img/Ukraine-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
+      <a class="dropdown-item" href="#"><img src="img/Turkey-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
+  </li>
+<li class="nav-item">
+    <a class="nav-link navbar-brand bg-transparent" id="pills-profile-tab" data-toggle="modal" href="#registerleModal" aria-controls="pills-profile" aria-selected="false"><img src="img/devushki2.png" class="rounded mr-2" style="height:35px;" alt="..."></a>
+  </li>
 </ul>
   </div>
 </nav>
-
+   <!--------- НАВИГАЦИЯ 3 ВКЛАДКИ _МОБИЛНОЕ-----КОНЕЦ---------->
+<!---------------------------------------Женьщины------------>
    <div class="container-fluid">
-  <h1 class="text-center font-weight-normal">Личный кабинет</h1>
-  <div class="row">
-  <div class="col-3">
-    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-    </div>
-  </div>
-  <div class="col-9">
-    <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
-      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
-    </div>
-  </div>
-</div>
-</div>
+  <ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Much longer nav link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  </li>
+</ul>
  </div>
 
 </div><!--------------------------------------- ВКЛАДКИ _----КОНЕЦ------------>
@@ -758,7 +1050,7 @@ connection.onopen = function() {
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle"><img src="img/editing.png" class="mr-3" style="height:54px;" alt="...">РЕДАКТИРОВАНИЕ ИМЕНИ</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle"><img src="img/editing.png" class="mr-3" style="height:30px;" alt="...">РЕДАКТИРОВАНИЕ ИМЕНИ</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -985,18 +1277,135 @@ connection.onopen = function() {
         <img src="img/facebook.png" height="40" alt=""/></a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/google.png);vertical-align: inherit;">Visa</font>
+       <a class="nav-link" href="admin/pages/examples/login.html"><font class="text-hide" style="background-image: url(img/google.png);vertical-align: inherit;">Visa</font>
         <img src="img/mailru.png" height="40" alt=""/></a>
       </li>
-      <!--<li class="nav-item">
-        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/google.png);vertical-align: inherit;">Visa</font>
-        <img src="img/v-contact.png" height="40" alt=""/></a>
-      </li>-->
-
-
-
+     
     </ul>
 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ЖЕНЬЩИНЫ \ РЕГИСТРАЦИЯ-->
+<div class="modal fade" id="registerWumenleModal" tabindex="-1" role="dialog" aria-labelledby="registerWumenleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title" id="exampleModalCenterTitle">РЕГИСТРАЦИЯ:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+    
+
+  <div class="">
+  <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email </label>
+    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="введите ваш Email">
+
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Придумай пороль (мин 8 знаков)">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Запомнить</label>
+  </div>
+
+    <a href="#nav-wumen" id="nav-wumen-tab" data-toggle="tab" class="btn btn-primary close btn-lg btn-block" role="button" data-dismiss="modal" aria-pressed="true" style="margin-top:3em;">Зарегистрироваться</a>
+
+</form>
+  </div>
+  
+
+
+      </div>
+      <div class=" justify-content-center">
+        <div><p class="text-center">или войдите с помощью</p></div>
+        <ul class="nav justify-content-center">
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+        <img src="img/google.png" height="40" alt=""/></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="#"><font class="text-hide" style="background-image: url(img/google.png);vertical-align: inherit;">Visa</font>
+        <img src="img/facebook.png" height="40" alt=""/></a>
+      </li>
+       <li class="nav-item">
+       <a class="nav-link" href="admin/pages/examples/login.html"><font class="text-hide" style="background-image: url(img/google.png);vertical-align: inherit;">Visa</font>
+        <img src="img/mailru.png" height="40" alt=""/></a>
+      </li>
+     
+    </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Подарки-->
+<div class="modal fade" id="presentModalCenter" tabindex="-1" role="dialog" aria-labelledby="presentModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Выбрать подарок:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-deck">
+  <div class="card">
+    <img src="img/kisspng.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">10 минут</h5>
+      
+    </div>
+    <div class="card-footer">
+      <div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck1">
+  <label class="custom-control-label" for="customCheck1">Выбрать</label>
+</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="img/kisspng.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">20 минут</h5>
+      
+    </div>
+    <div class="card-footer">
+      <div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck1">
+  <label class="custom-control-label" for="customCheck1">Выбрать</label>
+</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="img/kisspng.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">30 минут</h5>
+      
+    </div>
+    <div class="card-footer">
+      <div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck1">
+  <label class="custom-control-label" for="customCheck1">Выбрать</label>
+</div>
+    </div>
+  </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-success">Выбрать</button>
       </div>
     </div>
   </div>
@@ -1005,6 +1414,15 @@ connection.onopen = function() {
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'DYd5eJ4xBQ';var d=document;var w=window;function l(){
+  var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+  s.src = '//code.jivosite.com/script/widget/'+widget_id
+    ; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}
+  if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}
+  else{w.addEventListener('load',l,false);}}})();
+</script>
+<!-- {/literal} END JIVOSITE CODE -->
 </body>
 </html>

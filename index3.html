@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Видео чат рулетка |Сайт знакомств онлайн | Знакомства в интернете </title>
+  <meta name="description" content="Видео чат рулетка">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="apple-touch-icon" href="img/icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/icon.png">
+  <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.js"></script>
+<script src="https://cdn.webrtc-experiment.com/FileBufferReader.js"></script>
+<!-- socket.io for signaling -->
+  <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+  <script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+  </script>
+
+</head>
+
+
+<body>
+
+<header id="head">
+
+  <!--------------------------------------- НАВИГАЦИЯ 2 ВКЛАДКИ _МОБИЛНОЕ--------------->
+<nav class="navbar navbar-expand-lg navbar-light " id="#">
+  <a class="navbar-brand"  id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+    <span class="logo_text" style=""><img src="img/logo1.png" alt=""/>Lovemeet</span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="float:right;">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse  justify-content-end" id="navbarNavAltMarkup">
+<ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+<li class="nav-item dropdown">
+    <a class="nav-link navbar-brand dropdown-toggle bg-transparent" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="img/Russia-flag.png" height="30" alt="Чат" title="Чат \ Сообщения"></a>
+  <div class="dropdown-menu">
+      <a class="dropdown-item" href="#"><img src="img/Russia-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
+      <a class="dropdown-item" href="#"><img src="img/Ukraine-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a>
+      <a class="dropdown-item" href="#"><img src="img/Turkey-flag.png" height="50" alt="Чат" title="Чат \ Сообщения"></a></div>
+  </li>
+
+</ul>
+  
+</nav>
+   <!--------- НАВИГАЦИЯ 2 ВКЛАДКИ _МОБИЛНОЕ-----КОНЕЦ---------->
+
+
+
+
+
+
+ <div class="container-fluid">
+ 
+ 
+ <div class="row" style=" padding-top:1em;">
+   <div class="col-sm-8">
+
+    <div style="width:100%;">
+
+    <!---------------------------------------МУЖЧИНЫ------------>
+<h1><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/RTCMultiConnection-v3.0">Audio+Video+TextChat+FileSharing</a></h1>
+<hr>
+<input type="text" id="room-id" value="abcdef">
+<button id="open-room">Open Room</button>
+<button id="join-room">Join Room</button>
+<button id="open-or-join-room">Auto Open Or Join Room</button>
+<hr>
+<div id="chat-container">
+    <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
+    <button id="share-file" disabled>Share File</button>
+    <br>
+    <div id="file-container"></div>
+    <div class="chat-output"></div>
+</div>
+<hr>
+
+   
+
+
+
+    <!--<div id="chat-container">
+        <div id="file-container"></div>
+        <div class="chat-output"></div>
+    </div>
+    <div id="videos-container"></div>-->
+  <style>
+/*<!--video {
+    object-fit: fill;
+}-->*/
+</style>
+
+
+  
+
+
+  
+  
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="input-text-chat">Чат</span>
+  </div>
+  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" id="share-file">File</button>
+  </div>
+</div>
+
+    
+    
+    <script>
+// ......................................................
+// .......................UI Code........................
+// ......................................................
+document.getElementById('open-room').onclick = function() {
+    this.disabled = true;
+    connection.open(document.getElementById('room-id').value);
+};
+document.getElementById('join-room').onclick = function() {
+    this.disabled = true;
+    connection.join(document.getElementById('room-id').value);
+};
+document.getElementById('open-or-join-room').onclick = function() {
+    this.disabled = true;
+    connection.openOrJoin(document.getElementById('room-id').value);
+};
+// ......................................................
+// ................FileSharing/TextChat Code.............
+// ......................................................
+document.getElementById('share-file').onclick = function() {
+    var fileSelector = new FileSelector();
+    fileSelector.selectSingleFile(function(file) {
+        connection.send(file);
+    });
+};
+document.getElementById('input-text-chat').onkeyup = function(e) {
+    if(e.keyCode != 13) return;
+    
+    // removing trailing/leading whitespace
+    this.value = this.value.replace(/^\s+|\s+$/g, '');
+    if (!this.value.length) return;
+    
+    connection.send(this.value);
+    appendDIV(this.value);
+    this.value =  '';
+};
+var chatContainer = document.querySelector('.chat-output');
+function appendDIV(event) {
+    var div = document.createElement('div');
+    div.innerHTML = event.data || event;
+    chatContainer.insertBefore(div, chatContainer.firstChild);
+    div.tabIndex = 0; div.focus();
+    
+    document.getElementById('input-text-chat').focus();
+}
+// ......................................................
+// ..................RTCMultiConnection Code.............
+// ......................................................
+var connection = new RTCMultiConnection();
+connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+connection.enableFileSharing = true; // by default, it is "false".
+connection.session = {
+    audio: true,
+    video: true,
+    data : true
+};
+connection.sdpConstraints.mandatory = {
+    OfferToReceiveAudio: true,
+    OfferToReceiveVideo: true
+};
+connection.onstream = function(event) {
+    document.body.appendChild(event.mediaElement);
+};
+connection.onmessage = appendDIV;
+connection.filesContainer = document.getElementById('file-container');
+connection.onopen = function() {
+    document.getElementById('share-file').disabled      = false;
+    document.getElementById('input-text-chat').disabled = false;
+};
+</script>
+
+</div>
+
+
+
+
+
+
+    </div>
+    <div class="col-4">
+
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+  </div>
+
+  
+</header>
+
+
+
+   
+
+
+
+
+<!--<script src="js/html5.webcam.demo.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'DYd5eJ4xBQ';var d=document;var w=window;function l(){
+  var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+  s.src = '//code.jivosite.com/script/widget/'+widget_id
+    ; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}
+  if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}
+  else{w.addEventListener('load',l,false);}}})();
+</script>
+<!-- {/literal} END JIVOSITE CODE -->
+</body>
+</html>

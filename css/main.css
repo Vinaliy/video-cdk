@@ -143,6 +143,50 @@
 .alert_vibor {
 	position:absolute;
 }
+#registracij-wumen {
+	overflow:hidden;
+	width: 100%;
+	display:block;
+	height: 480px; background-color: #00000091;
+	padding: 1em;
+	background-position:center;
+	background-repeat:no-repeat;
+}
+#videoChat-wumen {
+	overflow:hidden;
+	width: 100%;
+	display:block;
+	height: 480px; background-color: #00000091;
+	padding: 1em;
+	background-image:url(img/group.png);
+	background-position:center;
+	background-repeat:no-repeat;
+	}
+#some_div_id{
+	overflow:hidden;
+	width: 100%;
+	display:block;
+	height: 480px; background-color: #00000091;
+	background-image:url(img/men2.png);
+	background-position:center;
+	background-repeat:no-repeat;
+	
+}
+video:first-child {
+	width: 100%;
+
+}
+video:nth-child(2) {
+	width: 30%;
+	position: absolute;
+    margin-left: -32%;
+	margin-top:1em;
+	border-style: solid;
+	border-color:#ede1e1;
+    border-radius: 0.5em;
+	border-width:thick;
+    box-shadow: 5px 18px 97px -30px #010101;
+}
 @media screen and (max-width: 1300px) {
 .logo_text {
     margin-left: 0;
